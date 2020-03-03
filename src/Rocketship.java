@@ -2,27 +2,59 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
+	boolean up = false;
+	boolean down = false;
+	boolean right = false;
+	boolean left = false;
 
 	Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speed = 30;
-		
+		speed = 10;
+
+	}
+
+	void update() {
+		if (up) {
+			up();
+		}
+		if (down) {
+			down();
+		}
+		if (right) {
+			right();
+		}
+		if (left) {
+			left();
+		}
 	}
 
 	void draw(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(x, y, width, height);
 	}
+
 	public void right() {
-        x+=speed;
-    }
+		if (x < 450) {
+			x += speed;
+		}
+	}
+
 	public void left() {
-        x-=speed;
-    }
+		if (x > 0) {
+			x -= speed;
+		}
+	}
+
 	public void down() {
-        y+=speed;
-    }
+		if (y <= 725) {
+			y += speed;
+		}
+	}
+
 	public void up() {
-        y-=speed;
-    }
+		if (y > 0) {
+			y -= speed;
+		}
+
+	}
 }
