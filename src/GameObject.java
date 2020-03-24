@@ -9,7 +9,6 @@ public class GameObject {
 	boolean isActive = true;
 	Rectangle collisionBox;
 
-
 	GameObject(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
