@@ -9,9 +9,15 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random random = new Random();
+	int score = 0;
+
+	int getScore() {
+		return score;
+	}
 
 	ObjectManager(Rocketship rocket) {
 		this.rocket = rocket;
+		
 	}
 
 	void addProjectile(Projectile projectile) {
@@ -29,6 +35,8 @@ public class ObjectManager implements ActionListener {
 		for (Projectile projectiles : projectiles) {
 			projectiles.update();
 		}
+		checkCollision();
+		purgeObjects();
 	}
 
 	void draw(Graphics g) {
@@ -58,7 +66,21 @@ public class ObjectManager implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		addAlien();
 	}
-	void checkCollision (){
-		
+
+	void checkCollision() {
+		for (Alien alien : aliens) {
+			if (rocket.collisionBox.intersects(alien.collisionBox)) {
+				rocket.isActive = false;
+				alien.isActive = false;
+			}
+			for (Projectile projectile : projectiles) {
+				if (alien.collisionBox.intersects(projectile.collisionBox)) {
+					score = score +1; 
+					alien.isActive = false;
+					projectile.isActive = false;
+				}
+			}
+		}
 	}
+
 }

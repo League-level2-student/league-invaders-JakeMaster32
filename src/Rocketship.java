@@ -23,6 +23,7 @@ public class Rocketship extends GameObject {
 	}
 
 	void update() {
+		super.update();
 		if (up) {
 			up();
 		}

@@ -17,15 +17,17 @@ public class Projectile extends GameObject{
 		}
 	}
 	void update() {
+		super.update();
 		y-=speed;
 		if (y<0) {
 			isActive = false;
-			super.update();
+			
 		}
 			}
 
 			void draw(Graphics g) {
 				if (gotImage) {
+					
 					g.drawImage(image, x, y, width, height, null);
 				} else {
 					g.setColor(Color.RED);
